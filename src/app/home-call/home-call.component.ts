@@ -94,11 +94,9 @@ public constructor(public callService:CallService) {
     });
     const localVideo = document.querySelector('video#remoteVideo') as HTMLVideoElement;
     localVideo.srcObject = localStream
-    console.log('take call...................')
     this.callService.getOfferOrAnswerOrIce("offer", {
       async callBackFn(data: any) {
         if (data) {
-          console.log(data)
           await peerConnection.setRemoteDescription(new RTCSessionDescription(data));
           const answer = await peerConnection.createAnswer();
           await peerConnection.setLocalDescription(answer);

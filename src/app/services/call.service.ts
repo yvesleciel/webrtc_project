@@ -12,7 +12,6 @@ export class CallService {
 
   writeOfferOrAnswerOrIce(nodeName:string, data:any) {
     const db = getDatabase();
-    console.log(db)
     return update(ref(db, 'calls/' + nodeName), {
       data:data,
     });
@@ -22,7 +21,6 @@ export class CallService {
     const db = getDatabase();
     const callRef = ref(db, 'calls/' + nodeName + '/data');
     onValue(callRef, (snapshot)=>{
-      console.log(snapshot.val())
       callBack.callBackFn(snapshot.val());
     })
   }
